@@ -88,6 +88,7 @@ public class MenuOptions {
 	public static final String AD_MODIFY_MLI_ADDRESS = "AD_MODIFY_MLI_ADDRESS";
 	public static final String DOWNLOAD_JRE = "DOWNLOAD_JRE";
 	public static final String AP_GUARANTEE_FOR = "AP_GUARANTEE_FOR";
+	public static final String AP_GUARANTEE_FOR_CGSCL = "AP_GUARANTEE_FOR_CGSCL"; // CO-LENDING DKR 2022
 	public static final String AP_MODIFY_APPLICATION = "AP_MODIFY_APPLICATION";
 	public static final String AP_MODIFY_BRANCHNAME = "AP_MODIFY_BRANCHNAME";
 	public static final String AP_APPROVAL = "AP_APPROVAL";
@@ -95,6 +96,7 @@ public class MenuOptions {
 	public static final String AP_RE_APPROVAL = "AP_RE_APPROVAL";
 	public static final String AP_REJECT_APPLICATION = "AP_REJECT_APPLICATION";
 	public static final String AP_GF_TERM_LOAN = "AP_GF_TERM_LOAN";
+	public static final String AP_GF_TERM_LOAN_CGSCL = "AP_GF_TERM_LOAN_CGSCL";// CO-LEND DKR 2022
 	public static final String AP_GF_RSF_LOAN = "AP_GF_RSF_LOAN";
 	public static final String AP_PCGS_TERM_LOAN = "AP_PCGS_TERM_LOAN";
 	public static final String AP_GF_RSF_WC_LOAN = "AP_GF_RSF_WC_LOAN";
@@ -103,12 +105,15 @@ public class MenuOptions {
 	public static final String AP_RSF2_BOTH = "AP_RSF2_BOTH";
 	public static final String AP_GF_WORKING_CAPITAL = "AP_GF_WORKING_CAPITAL";
 	public static final String AP_GF_COMPOSITE_LOAN = "AP_GF_COMPOSITE_LOAN";
+	public static final String AP_GF_COMPOSITE_LOAN_CGSCL = "AP_GF_COMPOSITE_LOAN_CGSCL";  //CO-LEND DKR 2022
 	public static final String AP_GF_BOTH = "AP_GF_BOTH";
+	public static final String AP_GF_BOTH_CGSCL = "AP_GF_BOTH";  // CO-LEND DKR 2022
 	public static final String AP_REAPPLY_REJECTED_APPLICATION = "AP_REAPPLY_REJECTED_APPLICATION";
 	public static final String AP_RSF_BOTH = "AP_RSF_BOTH";
 	public static final String AP_GF_ADDL_TERM_LOAN = "AP_GF_ADDL_TERM_LOAN";
 	public static final String AP_GF_WC_ENHANCEMENT = "AP_GF_WC_ENHANCEMENT";
 	public static final String AP_GF_WC_RENEWAL = "AP_GF_WC_RENEWAL";
+	public static final String AP_GF_WC_RENEWAL_CGSCL = "AP_GF_WC_RENEWAL_CGSCL";   // co-lend dkr 2022
 	public static final String AP_APPROVAL_ELIGIBILITY_CHECK = "AP_APPROVAL_ELIGIBILITY_CHECK";
 	public static final String AP_APPROVAL_DUPLICATE_CHECK = "AP_APPROVAL_DUPLICATE_CHECK";
 	public static final String AP_APPROVAL_APPROVE = "AP_APPROVAL_APPROVE";
@@ -555,6 +560,7 @@ public class MenuOptions {
 		MENUS.put("AD_MODIFY_MLI_ADDRESS", "Update Member Address");
 		MENUS.put("DOWNLOAD_JRE", "Download JRE");
 		MENUS.put("AP_GUARANTEE_FOR", "Guarantee For");
+		MENUS.put("AP_GUARANTEE_FOR_CGSCL", "Guarantee For");   // CO-LENDING DKR 2022
 		MENUS.put("AP_MODIFY_APPLICATION", "Modify Application");
 		MENUS.put("AP_MODIFY_BRANCHNAME", "Modify Branch Name");
 		MENUS.put("AP_APPROVAL", "Approval");
@@ -562,6 +568,7 @@ public class MenuOptions {
 		MENUS.put("AP_RE_APPROVAL", "ReApproval");
 		MENUS.put("AP_REJECT_APPLICATION", "Reject Ineligible Approved Appls");
 		MENUS.put("AP_GF_TERM_LOAN", "Term Loan");
+		MENUS.put("AP_GF_TERM_LOAN_CGSCL", "Co-Lending Term Loan");  // co-lend dkr 2022
 		MENUS.put("AP_GF_RSF_LOAN", "RSF for Term Loan");
 		MENUS.put("AP_PCGS_TERM_LOAN", "PCGS for Term Loan");
 		MENUS.put("AP_GF_RSF_WC_LOAN", "RSF for Working Capital");
@@ -570,13 +577,16 @@ public class MenuOptions {
 		MENUS.put("AP_GF_RSF2_WC_LOAN", "RSF2 for Working Capital");
 		MENUS.put("AP_GF_WORKING_CAPITAL", "Composite Loan");
 		MENUS.put("AP_GF_COMPOSITE_LOAN", "Working Capital Limit");
+		MENUS.put("AP_GF_COMPOSITE_LOAN_CGSCL", "Co-Lending Working Capital Limit");  // CO-LEND DKR 2022
 		MENUS.put("AP_REAPPLY_REJECTED_APPLICATION",
 				"ReApply Rejected Application");
 		MENUS.put("AP_GF_BOTH", "Both TL and WC");
+		MENUS.put("AP_GF_BOTH_CGSCL", "Co-Lending Both TL and WC");   // CO-LEND DKR 2022
 		MENUS.put("AP_RSF_BOTH", "RSF For Both TL and WC");
 		MENUS.put("AP_GF_ADDL_TERM_LOAN", "Additional Term Loan");
 		MENUS.put("AP_GF_WC_ENHANCEMENT", "Enhancement in WC");
 		MENUS.put("AP_GF_WC_RENEWAL", "Renewal of Cover for WC");
+		MENUS.put("AP_GF_WC_RENEWAL_CGSCL", "CGSCL Renewal of Cover for WC");  // CO-LEND DKR 2022
 		MENUS.put("AP_APPROVAL_ELIGIBILITY_CHECK", "Eligibility Check");
 		MENUS.put("AP_APPROVAL_DUPLICATE_CHECK", "Duplicate Check");
 		MENUS.put("AP_APPROVAL_APPROVE", "Approve");
@@ -1076,6 +1086,8 @@ public class MenuOptions {
 				"showModifyMLIAddress.do?method=showModifyMLIAddress");
 		MENU_ACTIONS.put("DOWNLOAD_JRE", "downloadJRE.do");
 		MENU_ACTIONS.put("AP_GUARANTEE_FOR", "");
+		MENU_ACTIONS.put("AP_GUARANTEE_FOR_CGSCL", "");  // CO-LENDING 2022 DKR
+		
 		MENU_ACTIONS.put("AP_MODIFY_APPLICATION",
 				"modifyApp.do?method=getModifyInfo");
 		MENU_ACTIONS.put("AP_MODIFY_BRANCHNAME",
@@ -1088,6 +1100,7 @@ public class MenuOptions {
 		MENU_ACTIONS.put("AP_APPROVAL_APPROVE_NEW",
 				"showMliListPath.do?method=showMliListPath");
 		MENU_ACTIONS.put("AP_GF_TERM_LOAN", "tcMli.do?method=getTCMliInfo");
+		MENU_ACTIONS.put("AP_GF_TERM_LOAN_CGSCL", "tcMli.do?method=getTCMliInfo");  // CO-LEND DKR 2022
 		MENU_ACTIONS.put("AD_MEMBER_STATE_GST", "tcMlistate.do?method=getMemStateGSTiInfo");
 		MENU_ACTIONS.put("AP_GF_RSF_LOAN", "rsfMli.do?method=getRSFMliInfo");
 		MENU_ACTIONS.put("AP_PCGS_TERM_LOAN",
@@ -1103,17 +1116,20 @@ public class MenuOptions {
 				"rsfbothMli.do?method=getRsfBothMliInfo");
 		MENU_ACTIONS.put("AP_GF_WORKING_CAPITAL",
 				"tcMli.do?method=getCCMliInfo");
-		MENU_ACTIONS
-				.put("AP_GF_COMPOSITE_LOAN", "tcMli.do?method=getWCMliInfo");
+		MENU_ACTIONS.put("AP_GF_COMPOSITE_LOAN", "tcMli.do?method=getWCMliInfo");
+		MENU_ACTIONS.put("AP_GF_COMPOSITE_LOAN_CGSCL", "tcMliCgscl.do?method=getWCMliInfoCgscl");  // co-lend dkr 2022
 		MENU_ACTIONS.put("AP_REAPPLY_REJECTED_APPLICATION",
 				"reapplyRejectedApp.do?method=getReapplyRejectedApps");
-		MENU_ACTIONS.put("AP_GF_BOTH", "tcMli.do?method=getBothMliInfo");
+		MENU_ACTIONS.put("AP_GF_BOTH", "tcMli.do?method=getBothMliInfo");		
+		MENU_ACTIONS.put("AP_GF_BOTH_CGSCL", "tcMliCgscl.do?method=getBothMliInfoCgscl");  // CO-LEND DKR 2022
 		MENU_ACTIONS.put("AP_GF_ADDL_TERM_LOAN",
 				"enterApp.do?method=getAddtlTCInfo");
 		MENU_ACTIONS.put("AP_GF_WC_ENHANCEMENT",
 				"enterApp.do?method=getEnhanceWCInfo");
 		MENU_ACTIONS.put("AP_GF_WC_RENEWAL",
 				"enterApp.do?method=getRenewWCInfo");
+		MENU_ACTIONS.put("AP_GF_WC_RENEWAL_CGSCL","enterAppCgscl.do?method=getRenewWCInfoCgscl");   //CO-LEND DKR 2022
+		
 		MENU_ACTIONS.put("AP_APPROVAL_ELIGIBILITY_CHECK",
 				"showAppsForEligibility.do?method=showAppsForEligibility");
 		MENU_ACTIONS.put("AP_APPROVAL_DUPLICATE_CHECK", "checkDuplicate.do");

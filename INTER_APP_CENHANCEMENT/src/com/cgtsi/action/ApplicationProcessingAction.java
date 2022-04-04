@@ -249,8 +249,8 @@ public class ApplicationProcessingAction extends BaseAction {
 			branchId = mliInfo.getBranchId();
 			zoneId = mliInfo.getZoneId();
 			String memberId = bankId + zoneId + branchId;
-			String schm_flag=mliInfo.getSchemeFlag();
-			System.out.println("schm_flag  "+ schm_flag);
+			//String schm_flag=mliInfo.getSchemeFlag();
+			//System.out.println("schm_flag  "+ schm_flag);
 
 			List<MLIInfo> branchStateList = registration.getGSTStateList(bankId);
 			dynaForm.set("branchStateList", branchStateList);
@@ -1713,8 +1713,7 @@ public class ApplicationProcessingAction extends BaseAction {
 			branchId = mliInfo.getBranchId();
 			zoneId = mliInfo.getZoneId();
 			String memberId = bankId + zoneId + branchId;
-			String schm_flag=mliInfo.getSchemeFlag();
-			System.out.println("schm_flag  "+ schm_flag);
+		
 			// Changes for gst by DKR
 			List<MLIInfo> branchStateList = registration.getGSTStateList(bankId);
 			dynaForm.set("branchStateList", branchStateList);
@@ -11593,4 +11592,256 @@ public class ApplicationProcessingAction extends BaseAction {
 
 			return mapping.findForward(forward);
 		}
+		
+		// ********************************************  CO-LENDING DKR 2022 *****************************************
+		public ActionForward getWCMliInfoCgscl(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			Log.log(4, "ApplicationProcessingAction", "getWCMliInfoCgscl", "Entered");
+
+			DynaActionForm dynaForm = (DynaActionForm) form;
+			dynaForm.initialize(mapping);
+
+			ApplicationProcessor appProcessor = new ApplicationProcessor();
+
+			Application application = new Application();
+
+			HttpSession session = request.getSession(false);
+			session.setAttribute("APPLICATION_LOAN_TYPE", "WC");
+
+			// DKR HYBFLAG
+			session.setAttribute("hybridUIflag", "DTRUE");
+			session.setAttribute("gFinancialUIflag", "DFALSEUI");
+			// session.setAttribute("gExgGreenUIFlag", "RFALSEUI");
+			session.setAttribute("dblockUI", "");
+
+			session.setAttribute("APPLICATION_TYPE_FLAG", "9");
+			application.setLoanType("WC");
+			dynaForm.set("loanType", "WC");
+
+			dynaForm.set("compositeLoan", "N");
+			application.setCompositeLoan("N");
+
+			String forward = "";
+			String zoneId = "";
+			String branchId = "";
+
+			User user = getUserInformation(request);
+			String bankId = user.getBankId();
+			// add FB CHECK validate
+			Log.log(4, "ApplicationProcessingAction", "getWCMliInfoCgscl",
+					"sessionuserid=" + session.getAttribute("USER_ID") + "" + session.getValueNames());
+			double exposurelmtAmt = appProcessor.getExposuredetails(bankId, request);
+			dynaForm.set("exposurelmtAmt", exposurelmtAmt);
+			Log.log(5, "ApplicationProcessingAction", "getWCMliInfoCgscl", "exposure exposurelmtAmt :" + exposurelmtAmt);
+			// -----say
+			if (bankId.equals("0000")) {
+				forward = "mliPage";
+			} else {
+				MLIInfo mliInfo = getMemberInfo(request);
+				String bankName = mliInfo.getBankName();
+				bankId = mliInfo.getBankId();
+				branchId = mliInfo.getBranchId();
+				zoneId = mliInfo.getZoneId();
+				String memberId = bankId + zoneId + branchId;
+				String schm_flag=mliInfo.getSchemeFlag();
+				System.out.println("schm_flag  "+ schm_flag);
+				// Changes for gst by DKR
+				List<MLIInfo> branchStateList = registration.getGSTStateList(bankId);
+				dynaForm.set("branchStateList", branchStateList);
+				request.setAttribute("branchStateList", branchStateList);
+
+				String statusFlag = mliInfo.getStatus();
+				if (statusFlag.equals("I")) {
+					throw new NoDataException("Member :" + memberId + "has been deactivated.");
+				}
+
+				String mcgfsupport = mliInfo.getMcgf();
+				if (mcgfsupport.equals("Y")) {
+					dynaForm.set("scheme", "MCGS");
+					MCGSProcessor mcgsProcessor = new MCGSProcessor();
+					session.setAttribute("MCGF_FLAG", "M");
+					ArrayList participatingBanks = mcgsProcessor.getAllParticipatingBanks(memberId);
+					if ((participatingBanks == null) || (participatingBanks.size() == 0)) {
+						throw new NoDataException(
+								"Participating Banks are not available for this member.Hence Application cannot be submitted.");
+					}
+
+					dynaForm.set("participatingBanks", participatingBanks);
+					dynaForm.set("participatingBanks", participatingBanks);
+					dynaForm.set("mcgfName", bankName);
+					dynaForm.set("mcgfId", memberId);
+
+					ArrayList ssiRefNosList = appProcessor.getSsiRefNosForMcgf(memberId);
+					if ((ssiRefNosList == null) || (ssiRefNosList.size() == 0)) {
+						Log.log(4, "ApplicationProcessingAction", "getWCMliInfoCgscl", "No Borrowers");
+						throw new NoDataException("There are no borrowers for this Member");
+					}
+
+					dynaForm.set("allSsiRefNos", ssiRefNosList);
+					forward = "ssiRefNosPage";
+					ssiRefNosList = null;
+					mcgsProcessor = null;
+				} else {
+					session.setAttribute("MCGF_FLAG", "NM");
+					dynaForm.set("scheme", "CGFSI");
+					forward = "wcForwardCgscl";  //wcForward
+				}
+
+				ArrayList statesList = (ArrayList) getStateList();
+				dynaForm.set("statesList", statesList);
+
+				ArrayList socialList = getSocialCategory();
+				dynaForm.set("socialCategoryList", socialList);
+
+				ArrayList activityTypeListd = appProcessor.getAllTypeOfActivityList();
+				if(activityTypeListd.size()>0) {
+					dynaForm.set("activityTypeList", activityTypeListd);
+				}
+				statesList = null;
+				socialList = null;
+				activityTypeListd = null;
+				mliInfo = null;
+				bankId = null;
+				zoneId = null;
+				branchId = null;
+			}
+
+			Log.log(4, "ApplicationProcessingAction", "getWCMliInfoCgscl", "Exited");
+
+			return mapping.findForward(forward);
+		}
+/**
+		public ActionForward getBothMliInfoCgscl(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+				HttpServletResponse response) throws Exception {
+			Log.log(4, "ApplicationProcessingAction", "getBothMliInfoCgscl", "Entered");
+
+			DynaActionForm dynaForm = (DynaActionForm) form;
+			dynaForm.initialize(mapping);
+
+			ApplicationProcessor appProcessor = new ApplicationProcessor();
+
+			Application application = new Application();
+
+			HttpSession session = request.getSession(false);
+			// DKR HYBFLAG
+			session.setAttribute("hybridUIflag", "DTRUE");
+
+			session.setAttribute("APPLICATION_LOAN_TYPE", "BO");
+
+			session.setAttribute("APPLICATION_TYPE_FLAG", "10");
+			application.setLoanType("BO");
+			dynaForm.set("loanType", "BO");
+
+			session.setAttribute("gFinancialUIflag", "DFALSEUI");
+			session.setAttribute("dblockUI", "");
+			session.removeAttribute("gFinancialUIflag");
+			session.removeAttribute("dblockUI");
+
+			dynaForm.set("compositeLoan", "N");
+			application.setCompositeLoan("N");
+
+			String forward = "";
+			String zoneId = "";
+			String branchId = "";
+
+			User user = getUserInformation(request);
+			String bankId = user.getBankId();
+			// sayali------------
+
+			Log.log(4, "ApplicationProcessingAction", "getBothMliInfoCgscl",
+					"sessionuserid=" + session.getAttribute("USER_ID") + "" + session.getValueNames());
+			double exposurelmtAmt = appProcessor.getExposuredetails(bankId, request);
+			dynaForm.set("exposurelmtAmt", exposurelmtAmt);
+			Log.log(5, "ApplicationProcessingAction", "getBothMliInfoCgscl", "exposure exposurelmtAmt :" + exposurelmtAmt);
+	//-----say
+			if (bankId.equals("0000")) {
+				forward = "mliPage";
+			} else {
+				MLIInfo mliInfo = getMemberInfo(request);
+				String bankName = mliInfo.getBankName();
+				bankId = mliInfo.getBankId();
+				branchId = mliInfo.getBranchId();
+				zoneId = mliInfo.getZoneId();
+				String memberId = bankId + zoneId + branchId;
+
+				// Changes for gst by DKR
+				List<MLIInfo> branchStateList = registration.getGSTStateList(bankId);
+				dynaForm.set("branchStateList", branchStateList);
+				request.setAttribute("branchStateList", branchStateList);
+
+				String statusFlag = mliInfo.getStatus();
+				if (statusFlag.equals("I")) {
+					throw new NoDataException("Member :" + memberId + "has been deactivated.");
+				}
+
+				String mcgfsupport = mliInfo.getMcgf();
+				if (mcgfsupport.equals("Y")) {
+					dynaForm.set("scheme", "MCGS");
+					MCGSProcessor mcgsProcessor = new MCGSProcessor();
+					session.setAttribute("MCGF_FLAG", "M");
+					ArrayList participatingBanks = mcgsProcessor.getAllParticipatingBanks(memberId);
+					if ((participatingBanks == null) || (participatingBanks.size() == 0)) {
+						throw new NoDataException(
+								"Participating Banks are not available for this member.Hence Application cannot be submitted.");
+					}
+
+					dynaForm.set("participatingBanks", participatingBanks);
+
+					dynaForm.set("participatingBanks", participatingBanks);
+					dynaForm.set("mcgfName", bankName);
+					dynaForm.set("mcgfId", memberId);
+
+					ArrayList ssiRefNosList = appProcessor.getSsiRefNosForMcgf(memberId);
+					if ((ssiRefNosList == null) || (ssiRefNosList.size() == 0)) {
+						Log.log(4, "ApplicationProcessingAction", "getBothMliInfoCgscl", "No Borrowers");
+						throw new NoDataException("There are no borrowers for this Member");
+					}
+
+					dynaForm.set("allSsiRefNos", ssiRefNosList);
+
+					forward = "ssiRefNosPage";
+
+					ssiRefNosList = null;
+
+					mcgsProcessor = null;
+				} else {
+					session.setAttribute("MCGF_FLAG", "NM");
+
+					dynaForm.set("scheme", "CGFSI");
+
+					forward = "bothForwardCgscl"; // bothForward
+				}
+
+				ArrayList statesList = (ArrayList) getStateList();
+				dynaForm.set("statesList", statesList);
+
+				ArrayList socialList = getSocialCategory();
+				dynaForm.set("socialCategoryList", socialList);
+
+				ArrayList activityTypeListd = appProcessor.getAllTypeOfActivityList();
+				
+				
+				//========================================================================================
+				boolean rrbOrNot = appProcessor.checkMliIsRRB(bankId);
+				System.out.println("rrbOrNot  acton value>>>>>>>>>>>>DKR...." + rrbOrNot);
+				if (activityTypeListd.size()>0) {
+					System.out.println("industryNatureList  acton value>>>>>>>>>>>>industryNatureList.size...."+ activityTypeListd.size());
+					dynaForm.set("activityTypeList", activityTypeListd);
+				} 
+				statesList = null;
+
+				socialList = null;
+
+				activityTypeListd = null;
+				mliInfo = null;
+				bankId = null;
+				zoneId = null;
+				branchId = null;
+			}
+
+			Log.log(4, "ApplicationProcessingAction", "getBothMliInfoCgscl", "Exited");
+
+			return mapping.findForward(forward);
+		}   */
+		// CO-LENDING END
 }

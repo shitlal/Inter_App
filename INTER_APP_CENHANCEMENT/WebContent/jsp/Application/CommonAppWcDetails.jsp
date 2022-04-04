@@ -79,69 +79,6 @@
 	}
 	});
 
-	/* $( document ).ready(function() {
-		if(document.getElementById("projectedExports")!=null && document.getElementById("projectedExports").value!= "" && document.getElementById("projectedExports").value!="0.0"){
-			var projectedExportsVal = parseFloat(document.getElementById("projectedExports").value);
-			document.getElementById("projectedExports").value=projectedExportsVal;
-		}
-
-		if(document.getElementById("projectedSalesTurnover")!=null && document.getElementById("projectedSalesTurnover").value!= "" && document.getElementById("projectedSalesTurnover").value!="0.0"){
-			var projectedSalesTurnoverVal = parseFloat(document.getElementById("projectedSalesTurnover").value);
-			document.getElementById("projectedSalesTurnover").value=projectedSalesTurnoverVal;
-		}
-
-		if(document.getElementById("wcFundBasedSanctioned")!=null && document.getElementById("wcFundBasedSanctioned").value!= "" && document.getElementById("wcFundBasedSanctioned").value!="0.0"){
-			var wcFundBasedSanctionedVal = parseFloat(document.getElementById("wcFundBasedSanctioned").value);
-			document.getElementById("wcFundBasedSanctioned").value=wcFundBasedSanctionedVal;
-		}
-		
-		if(document.getElementById("wcNonFundBasedSanctioned")!=null && document.getElementById("wcNonFundBasedSanctioned").value!= "" && document.getElementById("wcNonFundBasedSanctioned").value!="0.0"){
-			var wcNonFundBasedSanctionedVal = parseFloat(document.getElementById("wcNonFundBasedSanctioned").value);
-			document.getElementById("wcNonFundBasedSanctioned").value=wcNonFundBasedSanctionedVal;
-		}
-
-		if(document.getElementById("wcPromoterContribution")!=null && document.getElementById("wcPromoterContribution").value!= "" && document.getElementById("wcPromoterContribution").value!="0.0"){
-			var wcPromoterContributionVal = parseFloat(document.getElementById("wcPromoterContribution").value);
-			document.getElementById("wcPromoterContribution").value=wcPromoterContributionVal;
-		}
-
-		if(document.getElementById("wcSubsidyOrEquity")!=null && document.getElementById("wcSubsidyOrEquity").value!= "" && document.getElementById("wcSubsidyOrEquity").value!="0.0"){
-			var wcSubsidyOrEquityVal = parseFloat(document.getElementById("wcSubsidyOrEquity").value);
-			document.getElementById("wcSubsidyOrEquity").value=wcSubsidyOrEquityVal;
-		}
-
-		if(document.getElementById("wcOthers")!=null && document.getElementById("wcOthers").value!= "" && document.getElementById("wcOthers").value!="0.0"){
-			var wcOthersVal = parseFloat(document.getElementById("wcOthers").value);
-			document.getElementById("wcOthers").value=wcSubsidyOrEquityVal;
-		}
-
-		if(document.getElementById("creditFundBased")!=null && document.getElementById("creditFundBased").value!= "" && document.getElementById("creditFundBased").value!="0.0"){
-			var creditFundBasedVal = parseFloat(document.getElementById("creditFundBased").value);
-			document.getElementById("creditFundBased").value=creditFundBasedVal;
-		}
-
-
-		if(document.getElementById("creditNonFundBased")!=null &&
-			document.getElementById("creditNonFundBased").value!= "" && document.getElementById("creditNonFundBased").value!="0.0"){
-			var creditNonFundBasedVal = parseFloat(document.getElementById("creditNonFundBased").value);
-			document.getElementById("creditNonFundBased").value=creditNonFundBasedVal;
-		}
-		
-
-		if(document.getElementById("amtDisbursed")!=null &&
-			document.getElementById("amtDisbursed").value!= "" && document.getElementById("amtDisbursed").value!="0.0"){
-			var amtDisbursedVal = parseFloat(document.getElementById("amtDisbursed").value);
-			document.getElementById("amtDisbursed").value=amtDisbursedVal;
-		}
-		
-		if(document.getElementById("projectOutlayId")!=null &&
-			document.getElementById("projectOutlayId").value!= "" && document.getElementById("projectOutlayId").value!="0.0"){
-			var creditGuaranteedVal = parseFloat(document.getElementById("projectOutlayId").value);
-			document.getElementById("projectOutlayId").value=creditGuaranteedVal;
-		}
-	
-		
-	}); */
 	
 function checkAgeMinority(){
 	 if(null!=document.getElementById('cpDobId')){
@@ -754,40 +691,7 @@ $(function() {
 		</TD>
 	</TR>
 	-->
-<%-- 	<TR align="left">
-		<TD align="left" valign="top" class="ColumnBackground" colspan="2">
-			<bean:message key="coveredByCGTSI" />
-		</TD>
-		<TD align="left" class="TableData" colspan="1">
-			<%
-				if ((appCommonFlag.equals("0")) || (appCommonFlag.equals("1"))
-						|| (appCommonFlag.equals("2"))
-						|| (appCommonFlag.equals("3"))
-						|| (appCommonFlag.equals("4"))
-						|| (appCommonFlag.equals("5"))
-						|| (appCommonFlag.equals("6"))
-						|| (appCommonFlag.equals("11"))
-						|| (appCommonFlag.equals("12"))
-						|| (appCommonFlag.equals("13"))
-						|| (appCommonFlag.equals("14"))
-						|| (appCommonFlag.equals("17"))
-						|| (appCommonFlag.equals("18"))
-						|| (appCommonFlag.equals("19"))) {
-			%> <html:radio name="appForm" value="Y"
-				property="previouslyCovered" disabled="true"></html:radio> <bean:message
-				key="yes" />&nbsp;&nbsp; <html:radio name="appForm" value="N"
-				property="previouslyCovered" disabled="true"></html:radio> <bean:message
-				key="no" /> <%
- 	} else {
- %> <html:radio name="appForm" value="Y"
-				property="previouslyCovered" onclick="enableNone()"></html:radio> <bean:message
-				key="yes" />&nbsp;&nbsp; <html:radio name="appForm" value="N"
-				property="previouslyCovered" onclick="enableNone()"></html:radio> <bean:message
-				key="no" /> <%
- 	}
- %>
-		</TD>
-	</TR> --%>
+
 
 	<TR>
 		<TD colspan="9">

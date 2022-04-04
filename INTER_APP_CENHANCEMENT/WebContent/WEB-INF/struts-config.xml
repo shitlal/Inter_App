@@ -17363,9 +17363,35 @@
                            path="/jsp/Reports//bulkFileDownload.jsp" />
               </action>
  		
- <!-- RAJU  End -->     		
+ <!--   End -->     		
    <!--*************************************** End of Actions ************************* -->
-   
+  <!-- co-lending -->
+		 <action
+			path="/tcMliCgscl"
+			type="com.cgtsi.action.ApplicationProcessingAction"
+			scope="session"
+			name="appForm"	
+			parameter="method">
+			<forward 
+				name="mliPage"         
+				path="/jsp/Application/MLIInfo.jsp"/>
+			<forward 
+				name="tcForward"         
+				path="/jsp/Application/TermCreditApp.jsp"/>
+			<forward 
+				name="ccForwardCgscl"         
+				path="/jsp/Application/CompositeAppCgscl.jsp"/>
+			<forward 
+				name="wcForwardCgscl"         
+				path="/jsp/Application/WCAppCgscl.jsp"/>  <!--  dkr CO-LEND 2022 -->
+			<forward 
+				name="bothForwardCgscl"         
+				path="/jsp/Application/BothAppCgscl.jsp"/>
+			<forward 
+				name="ssiRefNosPage"         
+				path="/jsp/Application/SSIRefNos.jsp"/>
+				
+		</action>
  </action-mappings>
    
    <!-- ********************** Resources Configuration ******************************** -->

@@ -1725,7 +1725,7 @@ public void updateLogoutInformation(String bnkId,String zneId,String brnId,
 			memberDtls.registerOutParameter(21,Types.VARCHAR);//Fax number
 			memberDtls.registerOutParameter(22,Types.VARCHAR);//ReportingZoneID
 			memberDtls.registerOutParameter(23,Types.VARCHAR);
-			memberDtls.registerOutParameter(24,Types.VARCHAR);
+			memberDtls.registerOutParameter(24,Types.VARCHAR);   // CO-LENDING 2022 DKR
 			 memberDtls.execute();
 
 			 mliInfo.setBankName(memberDtls.getString(5));
@@ -2000,6 +2000,8 @@ e.printStackTrace();
 				mliInfo.setMcgf(memberInfo.getString(19));
 				mliInfo.setDanDelivery(new String[]{memberInfo.getString(20)});
 				mliInfo.setReportingZone(memberInfo.getString(21));
+				mliInfo.setSchemeFlag(memberInfo.getString(22));//"CGSL");   // CO_LEND 2022 DKR
+				System.out.println("???????????????????????????????????////////////////////////"+mliInfo.getSchemeFlag());
 				Log.log(Log.DEBUG,"RegistrationDAO","getMemberDetails","bank id "+mliInfo.getBankId());
 				Log.log(Log.DEBUG,"RegistrationDAO","getMemberDetails","zone id "+mliInfo.getZoneId());
 				Log.log(Log.DEBUG,"RegistrationDAO","getMemberDetails","branch id "+mliInfo.getBranchId());

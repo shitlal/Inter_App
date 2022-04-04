@@ -42,7 +42,7 @@ import java.net.InetAddress;
 public class LoginAction extends BaseAction {
 
 	private static final String ALPHA_NUM = "!@#$%0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
+	private String schmFlag="";  // CO-LEND DKR 2022
 	public LoginAction() {
 	}
 
@@ -56,6 +56,7 @@ public class LoginAction extends BaseAction {
 		String memberId = (String) dynaActionForm.get("memberId");
 		HttpSession session = request.getSession(false);
 		String loggedInUser = null;
+		
 		PasswordManager passwordManager = new PasswordManager();
 		if (memberId.equals("000000000000"))
 			loggedInUser = "CGTSI";
@@ -124,6 +125,9 @@ public class LoginAction extends BaseAction {
 		session.setAttribute((String) dynaActionForm.get("userId"), user);
 		session.setAttribute("USER_ID", (String) dynaActionForm.get("userId"));
 		session.setAttribute("USER", user);
+		 schmFlag = registration.getMemberDetails(userId).getSchemeFlag(); // CO-LEND DKR 2022
+		//System.out.println("SCHM__________SCHEM_______________"+registration.getMemberDetails(userId).getSchemeFlag());
+		session.setAttribute("SCM_FLAG", schmFlag);   
 		Administrator admin = new Administrator();
 		ArrayList userPrivileges = admin.getPrivileges(userId);
 		dynaActionForm.set("userPrivileges", userPrivileges);
@@ -931,12 +935,18 @@ public class LoginAction extends BaseAction {
 					mainMenuValues.add(MenuOptions
 							.getMenuAction("RP_PRINT_PAY_IN_SLIP"));
 				}
-			} else if (menuIcon.equals("AP")) {
+			} else if (menuIcon.equals("AP")) {                     
+				if(schmFlag.equals("CGSCL")) {      // CO-LEND DKR 2022
+					mainMenus.add(MenuOptions.getMenu("AP_GUARANTEE_FOR_CGSCL"));
+					mainMenuValues.add(MenuOptions
+							.getMenuAction("AP_GUARANTEE_FOR_CGSCL"));
+				}else {     // CO-LEND
 				if (userPrivileges.contains("ADD_APPLICATION")) {
 					mainMenus.add(MenuOptions.getMenu("AP_GUARANTEE_FOR"));
 					mainMenuValues.add(MenuOptions
 							.getMenuAction("AP_GUARANTEE_FOR"));
-				}
+			     }
+				}   //END
 				if (userPrivileges.contains("MODIFY_APPLICATION")) {
 					mainMenus.add(MenuOptions.getMenu("AP_MODIFY_APPLICATION"));
 					mainMenuValues.add(MenuOptions
@@ -1700,6 +1710,20 @@ public class LoginAction extends BaseAction {
 							.getMenuAction("AD_UPDATE_MASTER_PLR_MODIFY"));
 				}
 			} else if (menuIcon.equals("AP")) {
+				if (schmFlag.equals("CGSCL") &&   mainMenu.equals(MenuOptions.getMenu("AP_GUARANTEE_FOR_CGSCL"))) {   // co-lend dkr 2022
+					subMenus.add(MenuOptions.getMenu("AP_GF_TERM_LOAN_CGSCL"));
+					subMenuValues.add(MenuOptions
+							.getMenuAction("AP_GF_TERM_LOAN_CGSCL"));
+					subMenus.add(MenuOptions.getMenu("AP_GF_COMPOSITE_LOAN_CGSCL"));
+					subMenuValues.add(MenuOptions
+							.getMenuAction("AP_GF_COMPOSITE_LOAN_CGSCL"));
+					
+					subMenus.add(MenuOptions.getMenu("AP_GF_WC_RENEWAL_CGSCL"));
+					subMenuValues.add(MenuOptions
+							.getMenuAction("AP_GF_WC_RENEWAL_CGSCL"));
+					subMenus.add(MenuOptions.getMenu("AP_GF_BOTH_CGSCL"));
+					subMenuValues.add(MenuOptions.getMenuAction("AP_GF_BOTH_CGSCL"));     //// CO-LEND DKR 2022 END
+				}else   // // co-lend dkr 2022 end				
 				if (mainMenu.equals(MenuOptions.getMenu("AP_GUARANTEE_FOR"))) {
 					subMenus.add(MenuOptions.getMenu("AP_GF_TERM_LOAN"));
 					subMenuValues.add(MenuOptions
@@ -1718,6 +1742,7 @@ public class LoginAction extends BaseAction {
 					subMenus.add(MenuOptions.getMenu("AP_GF_WC_RENEWAL"));
 					subMenuValues.add(MenuOptions
 							.getMenuAction("AP_GF_WC_RENEWAL"));
+					
 					subMenus.add(MenuOptions.getMenu("AP_GF_RSF2_WC_LOAN"));
 					subMenuValues.add(MenuOptions
 							.getMenuAction("AP_GF_RSF2_WC_LOAN"));
