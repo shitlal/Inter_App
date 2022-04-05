@@ -13911,5 +13911,28 @@ public class Validator implements Serializable {
 	 
 	        return prop;
 	    }
+	    // CO-LENDING DKR 2022
+	    public static boolean PrimarySecurityCheckCgscl(Object bean, ValidatorAction validAction, Field field,
+				ActionErrors errors, HttpServletRequest request) {
+	    	HttpSession session = request.getSession(false);
+			DynaActionForm dynaForm = (DynaActionForm) bean;
+			Double gaurantAmt = 0.0d;
+			String flag = (String) dynaForm.get("pSecurity");
+			String chk = (String) dynaForm.get("exposureFbId");
+			 gaurantAmt = (Double) dynaForm.get("creditFundBased");
+			String schemFlag = (String) session.getAttribute("SCM_FLAG");
+		/**	if ((chk.equals("N1")) && gaurantAmt >= 10000000 && schemFlag.equals("CGSCL") && (flag.equals("N"))){
+					ActionError actionError = new ActionError("PlsEnterSecFalg");
+					errors.add("org.apache.struts.action.GLOBAL_ERROR", actionError); 
+			}  */
+			System.out.println(" flag::"+flag+" gaurantAmt::"+gaurantAmt+" schemFlag::"+schemFlag +" chk Exposure::"+chk);
+			if (flag.equals("N") && gaurantAmt >= 10000000 && schemFlag.equals("CGSCL")) {
+				ActionError actionError = new ActionError("PlsEnterSecFalg");
+				errors.add("org.apache.struts.action.GLOBAL_ERROR", actionError); 
+			}
+			return errors.isEmpty();
+		}
+	    // CO-Lending END
+	    
 	 
 }

@@ -126,8 +126,8 @@ public class LoginAction extends BaseAction {
 		session.setAttribute("USER_ID", (String) dynaActionForm.get("userId"));
 		session.setAttribute("USER", user);
 		 schmFlag = registration.getMemberDetails(userId).getSchemeFlag(); // CO-LEND DKR 2022
-		//System.out.println("SCHM__________SCHEM_______________"+registration.getMemberDetails(userId).getSchemeFlag());
-		session.setAttribute("SCM_FLAG", schmFlag);   
+		session.setAttribute("SCM_FLAG", schmFlag);  		
+		//dynaActionForm.set("coLendSchmFlag", schmFlag);
 		Administrator admin = new Administrator();
 		ArrayList userPrivileges = admin.getPrivileges(userId);
 		dynaActionForm.set("userPrivileges", userPrivileges);

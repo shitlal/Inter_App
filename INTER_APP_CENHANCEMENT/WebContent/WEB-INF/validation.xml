@@ -20568,8 +20568,481 @@ END BY RITESH PATH -->
 
 		</form>
 
- 
+ <!-- CO-LENDING DKR 2022 -->
+<form name="/addWcAppCgscl">
+             <field property="hybridSecurity" depends="hybridSecurityCheck">
+		<arg0 key="hybridSecurity" />
+		</field>  
+				
+		<field property="mliBranchName"
+			depends="required">
+			<arg0 key="branchName"/>
+		</field>
+		
+		<field property="mliBranchCode"
+			depends="required">
+			<arg0 key="branchCode"/>
+		</field>
+		
+       <field property="gstNo"
+			depends="required">
+			<arg0 key="gstNoIsRequired"/>
+		</field>
+			
+		<field property="ssiITPan"
+			depends="checkCoveredValue,checkITPANEntry">
+			<arg0 key="firmItpan"/>
+		</field>
 
+		<field property="cpITPAN" 
+		      depends="checkCoveredValue,checkITPANEntry">
+				<arg0 key="cpITPAN" />
+		</field>
+	 
+	 		
+        <field property="thirdPartyGuaranteeTaken"
+			depends="required,validateThirdPartyGuaranteeTaken">
+			<arg0 key="thirdPartyGuaranteeTaken"/>
+		</field>
+		
+			<field property="bankAcNo" depends="required">
+			<arg0 key="loanAcNo"/>
+	    </field>
+        <field property="pSecurity" depends="PrimarySecurityCheckCgscl">
+				<arg0 key="pSecu"/>
+			</field>
+		
+           <field property="internalRating"
+			depends="validateForInternalRating">
+			<arg0 key="internalRating"/>
+		</field> 
+		
+    
+     <field property="employeeNos"
+			depends="required,intRange">
+			<arg0 key="noOfEmployees"/>
+					
+			 <arg1 name="intRange" key="${var:min}" resource="false"/>
+              <arg2  name="intRange" key="${var:max}" resource="false"/>
+                       <var>
+                              <var-name>min</var-name>
+                              <var-value>1</var-value>
+                       </var>
+                       <var>
+                             <var-name>max</var-name>
+                             <var-value>9999</var-value>
+                       </var>
+		 </field>
+    <field property="projectedSalesTurnover"
+			depends="required">
+			<arg0 key="dturnover"/>
+		</field>
+
+     <field property="cpDOB"
+			depends="required,minlength,date,validatePromoterDobDates">
+			<arg0 key="proDOB"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+		</field>
+
+  
+     <field property="handiCrafts"
+			depends="required">
+			<arg0 key="handiCrafts"/>
+		</field>
+
+   <field property="dcHandlooms"
+			depends="required">
+			<arg0 key="dcHandlooms"/>
+		</field>
+
+
+		<field property="previouslyCovered"
+			depends="checkCoveredValue">
+			<arg0 key="previouslyCovered"/>
+			<arg1 key="none"/>
+			<arg1 key="unitValue"/>
+			<var>
+				<var-name>noneValue</var-name>
+				<var-value>none</var-value>
+			 </var>	
+			 <var>
+				<var-name>unit</var-name>
+				<var-value>unitValue</var-value>
+			 </var>	
+		</field>	
+
+     	<field property="industryNature"
+			depends="required,validateRetailIN">
+			<arg0 key="activitytype"/>
+		</field>
+				
+		 <field property="activityType"
+				depends="required">
+			<arg0 key="industryNature"/>
+		</field>
+		
+		<field property="industrySector"
+			depends="required">
+			<arg0 key="industrySector"/>
+		</field>
+		
+	<field property="proMobileNo"
+			depends="required,validatePromoterMobileNo">
+			<arg0 key="proMobileNo"/>
+		</field>
+		
+		 <field property="pincode"
+			depends="minlength">
+			<arg0 key="pinCode"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>6</var-value>
+			 </var>
+		</field>
+		
+	  <field property="limitFundBasedInterest"
+			depends="checkIntrestRateValueEntry">
+			<arg0 key="limitFundBasedInterest"/>
+	</field>
+	
+<field property="firstDOB"
+			depends="minlength,date,validateFromCurrentDates">
+			<arg0 key="firstDOB"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+		</field>
+		<field property="secondDOB"
+			depends="minlength,date,validateFromCurrentDates">
+			<arg0 key="secondDOB"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+		</field>
+		<field property="thirdDOB"
+			depends="minlength,date,validateFromCurrentDates">
+			<arg0 key="thirdDOB"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+		</field>
+		
+		<field property="firstName"
+			depends="validatePromoterEntry">
+			<arg0 key="firstName"/>
+			<arg1 key="firstItpan"/>			
+			<arg2 key="firstDOB"/>			
+			 <var>
+			   <var-name>itpan</var-name>
+			   <var-value>firstItpan</var-value>
+			 </var>
+
+			 <var>
+			   <var-name>dob</var-name>
+			   <var-value>firstDOB</var-value>
+			 </var>
+		</field>
+		
+		<field property="secondName"
+			depends="validatePromoterEntry">
+			<arg0 key="secondName"/>
+			<arg1 key="secondItpan"/>			
+			<arg2 key="secondDOB"/>			
+			 <var>
+			   <var-name>itpan</var-name>
+			   <var-value>secondItpan</var-value>
+			 </var>
+
+			 <var>
+			   <var-name>dob</var-name>
+			   <var-value>secondDOB</var-value>
+			 </var>
+		</field>
+		
+		<field property="thirdName"
+			depends="validatePromoterEntry">
+			<arg0 key="thirdName"/>
+			<arg1 key="thirdItpan"/>			
+			<arg2 key="thirdDOB"/>			
+			 <var>
+			   <var-name>itpan</var-name>
+			   <var-value>thirdItpan</var-value>
+			 </var>
+
+			 <var>
+			   <var-name>dob</var-name>
+			   <var-value>thirdDOB</var-value>
+			 </var>
+		</field>
+		
+      <field property="limitFundBasedSanctionedDate"
+			depends="date,minlength,validateSanctionedDate,validateExistGreenUnit">
+			<arg0 key="limitFundBasedSanctionedDate"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+
+			<var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>			
+
+		</field>
+      
+		<field property="wcPromoterContribution"
+			depends="validateAmountValue">
+			<arg0 key="wcPromoterContribution"/>
+		</field>		
+		<field property="wcSubsidyOrEquity"
+			depends="validateAmountValue">
+			<arg0 key="wcSubsidyOrEquity"/>
+		</field>		
+		<field property="wcOthers"
+			depends="validateAmountValue">
+			<arg0 key="wcOthers"/>
+		</field>		
+		
+		<!-- Added by DKR 2021 -->
+       
+		<field property="wcFundBasedSanctioned"	depends="checkWcEntry">
+			<arg0 key="wcFundBasedSanctioned"/>
+			<arg1 key="wcNonFundBasedSanctioned"/>
+			<arg2 key="wcPromoterContribution"/>
+			<arg3 key="wcSubsidyOrEquity"/>
+			<arg4 key="wcOthers"/>
+			<var>
+				<var-name>wcNFB</var-name>
+				<var-value>wcNonFundBasedSanctioned</var-value>
+			 </var>
+			 <var>
+				<var-name>wcPCont</var-name>
+				<var-value>wcPromoterContribution</var-value>
+			 </var>
+			 <var>
+				<var-name>wcSubsidy</var-name>
+				<var-value>wcSubsidyOrEquity</var-value>
+			 </var>
+			 <var>
+				<var-name>wcOther</var-name>
+				<var-value>wcOthers</var-value>
+			 </var>
+		</field>
+				
+		<field property="limitFundBasedInterest"
+			depends="checkEntryField">
+			<arg0 key="limitFundBasedInterest"/>
+			<arg1 key="limitFundBasedSanctionedDate"/>
+			<arg2 key="wcFundBasedSanctioned"/>
+			<arg3 key="limitNonFundBasedCommission"/>
+		
+			<arg4 key="wcNonFundBasedSanctioned"/>
+			<arg5 key="creditFundBased"/>                        
+			
+			<var>
+					<var-name>fundBasedSanctionedDate</var-name>
+					<var-value>limitFundBasedSanctionedDate</var-value>
+			</var>
+			<var>
+					<var-name>fundBasedSanctioned</var-name>
+					<var-value>wcFundBasedSanctioned</var-value>
+			</var>		
+			
+			<var>
+					<var-name>nonfundBasedSanctioned</var-name>
+					<var-value>wcNonFundBasedSanctioned</var-value>
+			</var>
+			
+			<var>
+					<var-name>creditFundBased</var-name>
+					<var-value>creditFundBased</var-value>
+			</var>
+			
+
+	</field>	
+	
+	<field property="creditFundBased"
+		depends="checkCreditAmtGreater,validateExistGreenUnit">
+		<arg0 key="creditFundBased"/>
+		<arg1 key="wcFundBasedSanctioned"/>
+		<arg1 key="wcNonFundBasedSanctioned"/>
+		<var>
+				<var-name>wcFundBasedSanctioned</var-name>
+				<var-value>wcFundBasedSanctioned</var-value>
+		</var>
+		<var>
+				<var-name>wcNonFundBasedSanctioned</var-name>
+				<var-value>wcNonFundBasedSanctioned</var-value>
+		</var>	
+
+	</field>
+   
+	<field property="expiryDate"
+			depends="required,minlength,checkTerminationSanctionDate">
+			<arg0 key="wcexpiryDate"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>8</var-value>
+			 </var>
+		</field>
+		
+		<field property="creditFundBased"
+			depends="required,validateCreditGuaranteedForFb">
+			<arg0 key="validateCreditGuaranteedForFb"/>
+          </field>
+       
+	<field property="osFundBasedAsOnDate"
+			depends="minlength,date,validateFromCurrentDates">
+			<arg0 key="osFundBasedAsOnDateRequired"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+	</field>
+
+	
+	<field property="limitFundBasedSanctionedDate"
+			depends="validateFromToEqualDates">
+			<arg0 key="limitFundBasedSanctionedDate"/>
+			<arg1 key="osFundBasedAsOnDate"/>			
+			 <var>
+			   <var-name>toDate</var-name>
+			   <var-value>osFundBasedAsOnDate</var-value>
+			 </var>
+		</field>
+
+	<field property="osNonFundBasedAsOnDate"
+			depends="minlength,date,validateFromCurrentDates">
+			<arg0 key="osNonFundBasedAsOnDateRequired"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+	</field>
+	
+	
+	
+	 <field property="limitFundBasedInterest"
+		depends="checkIntrestRateValueEntry">
+		<arg0 key="baseRateAndInterestRate"/>
+	</field>
+	
+	 <field property="existGreenFldUnitType" depends="validateExistGreenUnit">
+				<arg0 key="existGreenFldUnitType" />
+		</field>
+		
+	 <field property="osFundBasedPpl"
+		depends="validateAmountValue">
+		<arg0 key="osFundBasedPplrequired"/>
+	</field>
+	
+	<field property="osFundBasedPpl" depends="checkOsField">
+		<arg0 key="osFundBasedPpl"/>
+		<arg1 key="osFundBasedInterestAmt"/>
+		<arg2 key="osFundBasedAsOnDate"/>
+		<arg3 key="osNonFundBasedPpl"/>
+	<!-- 	<arg4 key="osNonFundBasedCommissionAmt"/> -->
+		<arg4 key="osNonFundBasedAsOnDate"/>
+		<arg5 key="wcFundBasedSanctioned"/>
+		<arg6 key="wcNonFundBasedSanctioned"/>
+		<arg7 key="limitFundBasedSanctionedDate"/>
+		<!-- <arg9 key="limitNonFundBasedSanctionedDate"/> -->
+		<var>
+				<var-name>osFBInterestAmt</var-name>
+				<var-value>osFundBasedInterestAmt</var-value>
+		</var>
+		<var>
+				<var-name>osFBAsOnDate</var-name>
+				<var-value>osFundBasedAsOnDate</var-value>
+		</var>		
+		<var>
+				<var-name>osNonFBPpl</var-name>
+				<var-value>osNonFundBasedPpl</var-value>
+		</var>
+		<!-- <var>
+				<var-name>osNFBCommissionAmt</var-name>
+				<var-value>osNonFundBasedCommissionAmt</var-value>
+		</var> -->
+		<var>
+				<var-name>osNFBAsOnDate</var-name>
+				<var-value>osNonFundBasedAsOnDate</var-value>
+		</var>
+		<var>
+				<var-name>fundBasedSanctioned</var-name>
+				<var-value>wcFundBasedSanctioned</var-value>
+		</var>		
+		<var>
+				<var-name>nonfundBasedSanctioned</var-name>
+				<var-value>wcNonFundBasedSanctioned</var-value>
+		</var>		 
+		<var>
+				<var-name>limitFundBasedSanctionedDate</var-name>
+				<var-value>limitFundBasedSanctionedDate</var-value>
+		</var>		 
+		<!-- <var>
+				<var-name>limitNonFundBasedSanctionedDate</var-name>
+				<var-value>limitNonFundBasedSanctionedDate</var-value>
+		</var> -->		 
+
+	</field>
+	
+	
+		<field property="limitFundBasedSanctionedDate"
+			depends="minlength,date,validateFromCurrentDates,validateSanctionedDate">
+			<arg0 key="sanctionedDateRequired"/>
+			<arg1 name="minlength" key="${var:minlength}" resource="false"/>			
+			 <var>
+			   <var-name>minlength</var-name>
+			   <var-value>10</var-value>
+			 </var>
+			 <var>
+			   <var-name>datePattern</var-name>
+			   <var-value>dd/MM/yyyy</var-value>
+			 </var>
+		</field>
+</form>
+
+<!-- CO-LENDING END -->
 
 <!-- ***** validations for Query Bulider end *** -->
 

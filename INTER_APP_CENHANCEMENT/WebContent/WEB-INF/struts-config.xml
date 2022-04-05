@@ -4,10 +4,8 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
 	"http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
 
-<struts-config>
-	
-	<form-beans>
-	
+<struts-config>	
+	<form-beans>	
 	<!--******************************* Second Claims Processing Form Beans 31st Aug anil/Deepak *************** -->
        <form-bean name="cpSecDetailsForm" type="org.apache.struts.validator.DynaValidatorActionForm">
                         <form-property name="remarkSec" type="java.lang.String" />
@@ -919,6 +917,10 @@
 		     <form-property name="debitSrvCoverageRatioTl" type="java.lang.Float" /> 
 		     <form-property name="creditBureauChiefPromScor" type="java.lang.Integer" />  
 		     <!--End 159 CR ==22-NOV-2018   --> 
+		     <!-- Added by DKR CO-Lending 2022 -->
+		      <form-property name="coLendSchmFlag" type="java.lang.String" initial=""/>	
+		      <form-property name="jointDirectLendFlag" type="java.lang.String" initial="jointDirectLendFlag"/>	
+		     <!-- END CO-Lending 2022 -->
 		  </form-bean>
 		  <form-bean name="apForm" type="com.cgtsi.actionform.APForm">
 			<form-property name="withinMlis" type="java.lang.String"/>
@@ -15425,8 +15427,7 @@
 		type="com.cgtsi.action.ApplicationProcessingAction"
 		scope="session"
 		input="/jsp/application/CommonAppDetails.jsp"
-		parameter="method">				
-		
+		parameter="method">		
 		</action>	
 
   <action
@@ -17363,10 +17364,9 @@
                            path="/jsp/Reports//bulkFileDownload.jsp" />
               </action>
  		
- <!--   End -->     		
-   <!--*************************************** End of Actions ************************* -->
-  <!-- co-lending -->
-		 <action
+ <!--   End -->   
+ <!-- CO-LENDING DKR 2022 -->
+   <action
 			path="/tcMliCgscl"
 			type="com.cgtsi.action.ApplicationProcessingAction"
 			scope="session"
@@ -17392,7 +17392,58 @@
 				path="/jsp/Application/SSIRefNos.jsp"/>
 				
 		</action>
- </action-mappings>
+   
+   		<action
+			path="/afterTcMliCgscl"
+			type="com.cgtsi.action.ApplicationProcessingAction"
+			scope="session"
+			name="appForm"
+			input="/jsp/Application/MLIInfo.jsp"
+			parameter="method">
+			<forward 
+				name="tcForward"         
+				path="/jsp/Application/TermCreditApp.jsp"/>
+			<forward 
+				name="ccForward"         
+				path="/jsp/Application/CompositeAppCgscl.jsp"/>
+			<forward 
+				name="wcForward"         
+				path="/jsp/Application/WCAppCgscl.jsp"/>  <!--  dkr CO-LEND 2022 -->
+			<forward 
+				name="bothForward"         
+				path="/jsp/Application/BothAppCgscl.jsp"/>
+		</action>
+   <!--Co-Lending Working Capital Application-->
+   <action
+		path="/getGSTByStateCgsl"
+		name="appForm"
+		type="com.cgtsi.action.ApplicationProcessingAction"
+		scope="session"
+		input="/jsp/application/CommonAppWcDetailsCgscl.jsp"
+		parameter="method">		
+		</action>
+		<action
+			path="/addWcAppCgscl"
+			type="com.cgtsi.action.ApplicationProcessingAction"
+			name="appForm"
+			scope="session"
+			input="/jsp/Application/WCAppCgscl.jsp"
+			parameter="method">
+			<forward name="doubleClickHapped"
+				path="/jsp/Application/doubleClickHapped.jsp"/>
+		</action>  
+		
+  <action
+		path="/findGauranteeAmountByItpanCgscl"
+		name="appForm"
+		type="com.cgtsi.action.ApplicationProcessingAction"
+		scope="session"
+		input="/jsp/application/CommonAppWcDetailsCgscl.jsp"
+		parameter="method">				
+		
+		</action>			
+   <!--************************ End of Actions ************************* -->
+  </action-mappings>
    
    <!-- ********************** Resources Configuration ******************************** -->
    

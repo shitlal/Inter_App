@@ -166,9 +166,27 @@ public class Application implements Serializable
      private String restructConfirmation="";   // DKR 2021 ENHANCEMENT
      private Double  wcEnhanceLimitSanctioned=0.0d;
      private Double  wcEnhanceLimitGauranteeAmt=0.0d;
-   
+     
+     private String coLendSchmFlag=""; 
+     private String jointDirectLendFlag="";
          
-     public Double getWcEnhanceLimitSanctioned() {
+     public String getJointDirectLendFlag() {
+		return jointDirectLendFlag;
+	}
+
+	public void setJointDirectLendFlag(String jointDirectLendFlag) {
+		this.jointDirectLendFlag = jointDirectLendFlag;
+	}
+
+	public String getCoLendSchmFlag() {
+		return coLendSchmFlag;
+	}
+
+	public void setCoLendSchmFlag(String coLendSchmFlag) {
+		this.coLendSchmFlag = coLendSchmFlag;
+	}
+
+	public Double getWcEnhanceLimitSanctioned() {
 		return wcEnhanceLimitSanctioned;
 	}
 
@@ -1730,90 +1748,9 @@ public void setSsiRef(String ssiRef)
 				+ ", equivStandaredRating=" + equivStandaredRating + ", ivConfirmInvestGrad=" + ivConfirmInvestGrad
 				+ ", restructConfirmation=" + restructConfirmation + ", wcEnhanceLimitSanctioned="
 				+ wcEnhanceLimitSanctioned + ", wcEnhanceLimitGauranteeAmt=" + wcEnhanceLimitGauranteeAmt
-				+ ", outstandingDate=" + outstandingDate + ", itpan=" + itpan + ", ssiUnitName=" + ssiUnitName
-				+ ", gurAmt=" + gurAmt + ", npaDate=" + npaDate + ", adharNo=" + adharNo + ", getExposurelmtAmt()="
-				+ getExposurelmtAmt() + ", getWcEnhanceLimitSanctioned()=" + getWcEnhanceLimitSanctioned()
-				+ ", getWcEnhanceLimitGauranteeAmt()=" + getWcEnhanceLimitGauranteeAmt()
-				+ ", getEquivStandaredRating()=" + getEquivStandaredRating() + ", getIvConfirmInvestGrad()="
-				+ getIvConfirmInvestGrad() + ", getOutstandingDate()=" + getOutstandingDate()
-				+ ", getSsiConstitution()=" + getSsiConstitution() + ", getDebitEqtRatioUnt()=" + getDebitEqtRatioUnt()
-				+ ", getDebitSrvCoverageRatioTl()=" + getDebitSrvCoverageRatioTl() + ", getCurrentRatioWc()="
-				+ getCurrentRatioWc() + ", getDebitEqtRatio()=" + getDebitEqtRatio() + ", getDebitSrvCoverageRatio()="
-				+ getDebitSrvCoverageRatio() + ", getCurrentRatios()=" + getCurrentRatios()
-				+ ", getExistGreenFldUnitType()=" + getExistGreenFldUnitType() + ", getUnseqLoanportion()="
-				+ getUnseqLoanportion() + ", getUnLoanPortionExcludCgtCovered()=" + getUnLoanPortionExcludCgtCovered()
-				+ ", getOpratIncome()=" + getOpratIncome() + ", getProfAftTax()=" + getProfAftTax() + ", getNetworth()="
-				+ getNetworth() + ", getCreditBureauChiefPromScor()=" + getCreditBureauChiefPromScor()
-				+ ", getTotalAssets()=" + getTotalAssets() + ", getMcgfDetails()=" + getMcgfDetails()
-				+ ", getGuaranteeFee()=" + getGuaranteeFee() + ", getFBammtlimit()=" + getFBammtlimit()
-				+ ", getPromDirDefaltFlg()=" + getPromDirDefaltFlg() + ", getCredBureKeyPromScor()="
-				+ getCredBureKeyPromScor() + ", getCredBurePromScor2()=" + getCredBurePromScor2()
-				+ ", getCredBurePromScor3()=" + getCredBurePromScor3() + ", getCredBurePromScor4()="
-				+ getCredBurePromScor4() + ", getCredBurePromScor5()=" + getCredBurePromScor5()
-				+ ", getCredBureName1()=" + getCredBureName1() + ", getCredBureName2()=" + getCredBureName2()
-				+ ", getCredBureName3()=" + getCredBureName3() + ", getCredBureName4()=" + getCredBureName4()
-				+ ", getCredBureName5()=" + getCredBureName5() + ", getCibilFirmMsmeRank()=" + getCibilFirmMsmeRank()
-				+ ", getExpCommerScor()=" + getExpCommerScor() + ", getPromBorrNetWorth()=" + getPromBorrNetWorth()
-				+ ", getPromContribution()=" + getPromContribution() + ", getPromGAssoNPA1YrFlg()="
-				+ getPromGAssoNPA1YrFlg() + ", getPromBussExpYr()=" + getPromBussExpYr() + ", getSalesRevenue()="
-				+ getSalesRevenue() + ", getTaxPBIT()=" + getTaxPBIT() + ", getInterestPayment()="
-				+ getInterestPayment() + ", getTaxCurrentProvisionAmt()=" + getTaxCurrentProvisionAmt()
-				+ ", getTotCurrentAssets()=" + getTotCurrentAssets() + ", getTotCurrentLiability()="
-				+ getTotCurrentLiability() + ", getTotTermLiability()=" + getTotTermLiability()
-				+ ", getExuityCapital()=" + getExuityCapital() + ", getPreferenceCapital()=" + getPreferenceCapital()
-				+ ", getReservesSurplus()=" + getReservesSurplus() + ", getRepaymentDueNyrAmt()="
-				+ getRepaymentDueNyrAmt() + ", getProMobileNo()=" + getProMobileNo() + ", getHybridSecurity()="
-				+ getHybridSecurity() + ", getMovCollateratlSecurityAmt()=" + getMovCollateratlSecurityAmt()
-				+ ", getImmovCollateratlSecurityAmt()=" + getImmovCollateratlSecurityAmt()
-				+ ", getTotalMIcollatSecAmt()=" + getTotalMIcollatSecAmt() + ", getExposureFbIdY()="
-				+ getExposureFbIdY() + ", getExposureFbIdN()=" + getExposureFbIdN() + ", getExposureFbId()="
-				+ getExposureFbId() + ", getItpan()=" + getItpan() + ", getSsiUnitName()=" + getSsiUnitName()
-				+ ", getGurAmt()=" + getGurAmt() + ", getNpaDate()=" + getNpaDate() + ", getAdharNo()=" + getAdharNo()
-				+ ", getGst()=" + getGst() + ", getStateCode()=" + getStateCode() + ", getGstNo()=" + getGstNo()
-				+ ", getGstState()=" + getGstState() + ", getSubsidyType()=" + getSubsidyType() + ", getSubsidyOther()="
-				+ getSubsidyOther() + ", getHandloomSchName()=" + getHandloomSchName() + ", getInternalRating()="
-				+ getInternalRating() + ", getInternalratingProposal()=" + getInternalratingProposal()
-				+ ", getInvestmentGrade()=" + getInvestmentGrade() + ", getIsPrimarySecurity()="
-				+ getIsPrimarySecurity() + ", getSsiRef()=" + getSsiRef() + ", getActivity()=" + getActivity()
-				+ ", getZoneName()=" + getZoneName() + ", getCoFinanceTaken1()=" + getCoFinanceTaken1()
-				+ ", getIcardIssueDate()=" + getIcardIssueDate() + ", getIcardNo()=" + getIcardNo()
-				+ ", getHandiCrafts()=" + getHandiCrafts() + ", getJointFinance()=" + getJointFinance()
-				+ ", getDcHandicrafts()=" + getDcHandicrafts() + ", getInternalRate()=" + getInternalRate()
-				+ ", getExternalRate()=" + getExternalRate() + ", getDistrict()=" + getDistrict() + ", getState()="
-				+ getState() + ", getSex()=" + getSex() + ", getSocialCategory()=" + getSocialCategory()
-				+ ", getMliID()=" + getMliID() + ", getMliBranchName()=" + getMliBranchName()
-				+ ", getBorrowerDetails()=" + getBorrowerDetails() + ", getTermLoan()=" + getTermLoan() + ", getWc()="
-				+ getWc() + ", getLoanType()=" + getLoanType() + ", getCgpan()=" + getCgpan() + ", getUserId()="
-				+ getUserId() + ", getBankId()=" + getBankId() + ", getZoneId()=" + getZoneId() + ", getBranchId()="
-				+ getBranchId() + ", getAppRefNo()=" + getAppRefNo() + ", getWcAppRefNo()=" + getWcAppRefNo()
-				+ ", getNPA()=" + getNPA() + ", getCompositeLoan()=" + getCompositeLoan() + ", getCollateralSecDtls()="
-				+ getCollateralSecDtls() + ", getSubsidyProvided()=" + getSubsidyProvided() + ", getSubmittedDate()="
-				+ getSubmittedDate() + ", getSanctionedDate()=" + getSanctionedDate() + ", getRehabilitation()="
-				+ getRehabilitation() + ", getApprovedDate()=" + getApprovedDate() + ", getGuaranteeStartDate()="
-				+ getGuaranteeStartDate() + ", getAppExpiryDate()=" + getAppExpiryDate() + ", getRemarks()="
-				+ getRemarks() + ", getStatus()=" + getStatus() + ", getProjectType()=" + getProjectType()
-				+ ", getOutstandingAmount()=" + getOutstandingAmount() + ", getApprovedAmount()=" + getApprovedAmount()
-				+ ", getSantionedAmount()=" + getSantionedAmount() + ", getITPAN()=" + getITPAN()
-				+ ", getEnhancementAmount()=" + getEnhancementAmount() + ", getReapprovedAmount()="
-				+ getReapprovedAmount() + ", getDocRefNo()=" + getDocRefNo() + ", getReapprovalRemarks()="
-				+ getReapprovalRemarks() + ", getProjectOutlayDetails()=" + getProjectOutlayDetails()
-				+ ", getSanctionedAmount()=" + getSanctionedAmount() + ", getScheme()=" + getScheme()
-				+ ", getTheRepaymentDetail()=" + getTheRepaymentDetail() + ", getRegionId()=" + getRegionId()
-				+ ", getMliBranchCode()=" + getMliBranchCode() + ", getGuaranteeAmount()=" + getGuaranteeAmount()
-				+ ", getMliRefNo()=" + getMliRefNo() + ", getSecuritization()=" + getSecuritization()
-				+ ", getMCGFDetails()=" + getMCGFDetails() + ", getSubSchemeName()=" + getSubSchemeName()
-				+ ", getExistingRemarks()=" + getExistingRemarks() + ", getAdditionalTC()=" + getAdditionalTC()
-				+ ", getWcEnhancement()=" + getWcEnhancement() + ", getWcRenewal()=" + getWcRenewal()
-				+ ", getCgpanReference()=" + getCgpanReference() + ", getIsVerified()=" + getIsVerified()
-				+ ", getJointcgpan()=" + getJointcgpan() + ", getApplicationType()=" + getApplicationType()
-				+ ", getActivityConfirm()=" + getActivityConfirm() + ", getPrevSSI()=" + getPrevSSI()
-				+ ", getExistSSI()=" + getExistSSI() + ", getHandiCraftsStatus()=" + getHandiCraftsStatus()
-				+ ", getDcHandicraftsStatus()=" + getDcHandicraftsStatus() + ", getDcHandlooms()=" + getDcHandlooms()
-				+ ", getDcHandloomsStatus()=" + getDcHandloomsStatus() + ", getWeaverCreditScheme()="
-				+ getWeaverCreditScheme() + ", getHandloomchk()=" + getHandloomchk() + ", getUdyogAdharNo()="
-				+ getUdyogAdharNo() + ", getBankAcNo()=" + getBankAcNo() + ", getRestructConfirmation()="
-				+ getRestructConfirmation() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", coLendSchmFlag=" + coLendSchmFlag + ", outstandingDate=" + outstandingDate + ", itpan=" + itpan
+				+ ", ssiUnitName=" + ssiUnitName + ", gurAmt=" + gurAmt + ", npaDate=" + npaDate + ", adharNo="
+				+ adharNo + "]";
 	}
-	
+
 }

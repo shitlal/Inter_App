@@ -578,15 +578,14 @@ public class MenuOptions {
 		MENUS.put("AP_GF_WORKING_CAPITAL", "Composite Loan");
 		MENUS.put("AP_GF_COMPOSITE_LOAN", "Working Capital Limit");
 		MENUS.put("AP_GF_COMPOSITE_LOAN_CGSCL", "Co-Lending Working Capital Limit");  // CO-LEND DKR 2022
-		MENUS.put("AP_REAPPLY_REJECTED_APPLICATION",
-				"ReApply Rejected Application");
+		MENUS.put("AP_REAPPLY_REJECTED_APPLICATION","ReApply Rejected Application");
 		MENUS.put("AP_GF_BOTH", "Both TL and WC");
 		MENUS.put("AP_GF_BOTH_CGSCL", "Co-Lending Both TL and WC");   // CO-LEND DKR 2022
 		MENUS.put("AP_RSF_BOTH", "RSF For Both TL and WC");
 		MENUS.put("AP_GF_ADDL_TERM_LOAN", "Additional Term Loan");
 		MENUS.put("AP_GF_WC_ENHANCEMENT", "Enhancement in WC");
 		MENUS.put("AP_GF_WC_RENEWAL", "Renewal of Cover for WC");
-		MENUS.put("AP_GF_WC_RENEWAL_CGSCL", "CGSCL Renewal of Cover for WC");  // CO-LEND DKR 2022
+		MENUS.put("AP_GF_WC_RENEWAL_CGSCL", "Co-Lending Renewal of Cover for WC");  // CO-LEND DKR 2022
 		MENUS.put("AP_APPROVAL_ELIGIBILITY_CHECK", "Eligibility Check");
 		MENUS.put("AP_APPROVAL_DUPLICATE_CHECK", "Duplicate Check");
 		MENUS.put("AP_APPROVAL_APPROVE", "Approve");

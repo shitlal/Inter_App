@@ -80,8 +80,8 @@ input[type=text],select,textarea {
 							HREF="javascript:submitForm('workingCapitalHelp.do?method=workingCapitalHelp')">
 							HELP</A>
 					</DIV>
-					 <%@ include file="CommonAppWcDetails.jsp"%>
-					<%@ include file="WCAppDetails.jsp"%>
+					 <%@ include file="CommonAppWcDetailsCgscl.jsp"%>
+					<%@ include file="WCAppDetailsCgscl.jsp"%>
 					
 				 <%
 							if (session.getAttribute(SessionConstants.MCGF_FLAG).equals("M"))

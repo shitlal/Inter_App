@@ -5412,9 +5412,6 @@ public class ApplicationProcessingAction extends BaseAction {
 		LogClass.StepWritter(" submitApp start from here ");
 		String successPage = "";
 		try {
-			
-			// if (isTokenValid(request)) {
-			// resetToken(request);
 			DynaActionForm dynaForm = (DynaActionForm) form;
 			LogClass.StepWritter(" submitApp start from here and loan type is "
 					+ dynaForm.get("loanType"));
@@ -5744,7 +5741,14 @@ public class ApplicationProcessingAction extends BaseAction {
 			double creditGuaranteed = 0.0D;
 			double creditFundBased = 0.0D;
 			double creditNonFundBased = 0.0D;
+			String jointDirectLendFlag="";
 			String type = (String) dynaForm.get("loanType");
+			// Added Co-Lending DKR 2022
+			 String coLendSchmFlag=(String)dynaForm.get("coLendSchmFlag"); 
+			 if(coLendSchmFlag.equals("")) {
+		      jointDirectLendFlag=(String)dynaForm.get("jointDirectLendFlag"); 
+			 }
+				// END Co-Lending DKR 2022
 			//========================== 10000000
 			if (application.getLoanType().equals("TC") || application.getLoanType().equals("WC") || (application.getLoanType().equals("BO") || application.getLoanType().equals("CC")))
 			  { //  DKR 32 Col 
@@ -5835,6 +5839,10 @@ public class ApplicationProcessingAction extends BaseAction {
 					application.setCurrentRatios(currentRatios);
 					application.setCreditBureauChiefPromScor(creditBureauChiefPromScor);
 					application.setTotalAssets(totalAssets); 
+					application.setCoLendSchmFlag("coLendSchmFlag"); 
+					
+					application.setCoLendSchmFlag("coLendSchmFlag");                // co-lending 2022
+					application.setJointDirectLendFlag("jointDirectLendFlag");     // co-lending 2022 
 			  }
 				// END 32 & 8 Col			
 		//==========================
@@ -6460,8 +6468,7 @@ public class ApplicationProcessingAction extends BaseAction {
 			application.setLoanType(application.getLoanType());
 			application.getBorrowerDetails().getSsiDetails()
 					.setEnterprise((String) dynaForm.get("enterprise"));
-			application.getBorrowerDetails().getSsiDetails()
-					.setUnitAssisted((String) dynaForm.get("unitAssisted"));
+			application.getBorrowerDetails().getSsiDetails().setUnitAssisted((String) dynaForm.get("unitAssisted"));
 			application.getBorrowerDetails().getSsiDetails()
 					.setWomenOperated((String) dynaForm.get("womenOperated"));
 			application = appProcessor.submitNewRSFApplication(application,
@@ -11613,7 +11620,8 @@ public class ApplicationProcessingAction extends BaseAction {
 			session.setAttribute("gFinancialUIflag", "DFALSEUI");
 			// session.setAttribute("gExgGreenUIFlag", "RFALSEUI");
 			session.setAttribute("dblockUI", "");
-
+		//	dynaForm.set("coLendSchmFlag", session.getAttribute("SCM_FLAG").toString());  // Co_lending dkr 2022
+			
 			session.setAttribute("APPLICATION_TYPE_FLAG", "9");
 			application.setLoanType("WC");
 			dynaForm.set("loanType", "WC");

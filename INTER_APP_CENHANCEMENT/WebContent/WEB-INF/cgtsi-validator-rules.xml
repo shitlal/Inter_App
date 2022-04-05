@@ -2072,6 +2072,16 @@
 			msg="validatePromoterDobDates">
 		</validator>
        
+       <!-- added by DKR CO-Lending 2022 -->
+		<validator name="PrimarySecurityCheckCgscl" classname="com.cgtsi.util.Validator"
+			method="PrimarySecurityCheckCgscl"
+			methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionErrors,
+                       javax.servlet.http.HttpServletRequest"
+			msg="PrimarySecurityCheckCgscl">
+		</validator>
        
        
 	</global>
